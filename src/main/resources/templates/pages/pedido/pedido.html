@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-layout-decorate="~{layouts/base}">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bar</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link data-th-href="@{/vendor/bootstrap/css/bootstrap.min.css}" href="../../../static/vendor/bootstrap/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link data-th-href="@{/vendor/font-awesome/css/font-awesome.min.css}" href="../../../static/vendor/font-awesome/css/font-awesome.min.css"
+        rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link data-th-href="@{/css/style.css}" href="../../../static/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="insertHeader"></div>
+    <div class="container" data-layout-fragment="content">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h1 class="text-primary"><i class="fa fa-beer" aria-hidden="true"></i> Bar</h1>
+                    <hr>
+                    <div class="alert alert-info alert-dismissible fade in " data-th-if="${msg != null}" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                        <span data-th-text="${msg}"></span>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible fade in " data-th-if="${alert != null}" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                            <strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></strong>
+                            <span data-th-text="${alert}"></span>
+                        </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-4 text-center">
+                            <div class="well text-success">
+                                <h1 class="huge">R$ <span data-th-text="${participante.totalCreditos()} == null ? 0.00 : ${participante.totalCreditos()}"></span></h1>
+                                <br>
+                                <h4>Saldo Disponível</h4>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <form class="form-horizontal" data-th-action="@{/cpanel/bar/consulta/}" method="get">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">
+                                        * Pesquisar ID</label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="number" required class="form-control" name="id" id="id" placeholder="Digite o ID do participante...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-primary" type="submit"><i class="fa fa-search"
+                                                        aria-hidden="true"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <h1 class="text-center text-primary">#<span data-th-text="${participante.id}"></span> -
+                                <span data-th-text="${participante.nome}"></span></h1>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="col-md-7 table-scroll">
+                        <table class="table table-bordered table-hover">
+                            <caption>
+                                Historico de Pedidos
+                            </caption>
+                            <thead>
+                                <tr class="active">
+                                    <th>Item</th>
+                                    <th class="col-md-5">Produto</th>
+                                    <th>Valor Unit.</th>
+                                    <th>Qtd.</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <data-th-block th:each="pedido : ${participante.getPedidos()}">
+                                    <tr>
+                                        <td data-th-text="${pedido.id}"></td>
+                                        <td class="upper" data-th-text="${pedido.produto.descricao}"></td>
+                                        <td><strong>R$ <span data-th-text="${pedido.produto.preco}"></span></strong></td>
+                                        <td data-th-text="${pedido.quantidade}"></td>
+                                        <td><strong>R$ <span data-th-text="${pedido.getTotaPedido()}"></span></strong></td>
+                                        <td class="text-center">
+                                            <a data-th-href="'/cpanel/pedido/' + ${pedido.id}" class="text-danger"
+                                                data-toggle="tooltip" data-placement="top" title="Remover Pedido" style="font-size: 16px;"><i
+                                                    class="fa fa-times fa-fw" aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                </data-th-block>
+                            </tbody>
+                            <tfoot>
+                                <tr class="active text-primary">
+                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                    <td colspan="2"><strong>R$ <span data-th-text="${participante.valorTotalPedidos()} == null ? 0.00 : ${participante.valorTotalPedidos()}"></span></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="col-md-5">
+                        <form class="form-horizontal" data-th-action="@{/cpanel/pedido/}" method="post">
+                            <p class="text-muted">
+                                <i class="fa fa-caret-right fa-fw" aria-hidden="true"></i>Adicionar Novo Pedido</p>
+                            <div class="form-group">
+                                <input type="hidden" name="idParticipante" data-th-value="${participante.id}">
+                                <label for="idProduto" class="col-sm-3 control-label">* Produto</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="idProduto" id="idProduto">
+                                        <option disabled selected value> -- Escolha um Produto -- </option>
+                                        <data-th-block th:each="produto : ${produtos}">
+                                            <option data-th-value="${produto.id}" data-th-preco="${produto.preco}"
+                                                data-th-text="${produto.descricao}"></option>
+                                        </data-th-block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="preco" class="col-sm-3 control-label">* Preço</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" id="preco" step=".01" readonly
+                                        autocomplete="off" name="preco" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantidade" class="col-sm-3 control-label">* Qtd</label>
+                                <div class="col-sm-3">
+                                    <input type="number" class="form-control" id="quantidade" value="1" required
+                                        autocomplete="off" name="quantidade" />
+                                </div>
+                            </div>
+                            <br>
+                            <div class="text-left col-sm-9 col-sm-offset-3">
+                                <button type="submit" class="btn btn-xs btn-primary" data-th-attrappend="disabled=${participante.id} == null ? disabled">
+                                    <i class="fa fa-check fa-fw" aria-hidden="true"></i> Adicionar</button>
+                                <button type="button" class="btn btn-xs btn-default" id="limpar">
+                                    <i class="fa fa-undo fa-fw" aria-hidden="true"></i> Limpar</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script data-th-src="@{/vendor/jquery/jquery.min.js}" src="../../../static/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script data-th-src="@{/vendor/bootstrap/js/bootstrap.min.js}" src="../../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <div data-layout-fragment="script">
+        <script data-th-src="@{/js/pedido/pedido.js}" src="../../../static/js/pedido/pedido.js"></script>
+    </div>
+</body>
+
+</html>

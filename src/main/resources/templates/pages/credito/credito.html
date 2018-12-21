@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-layout-decorate="~{layouts/base}">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Controle de Crédito</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link data-th-href="@{/vendor/bootstrap/css/bootstrap.min.css}" href="../../../static/vendor/bootstrap/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link data-th-href="@{/vendor/font-awesome/css/font-awesome.min.css}" href="../../../static/vendor/font-awesome/css/font-awesome.min.css"
+        rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link data-th-href="@{/css/style.css}" href="../../../static/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container" data-layout-fragment="content">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h5 class="text-primary"><i class="fa fa-usd" aria-hidden="true"></i> Controle de
+                        Crédito</h5>
+                    <hr>
+                    <div class="alert alert-info alert-dismissible fade in " data-th-if="${msg != null}" role="alert"> <button type="button" class="close"
+                        data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                        <span data-th-text="${msg}"></span>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <div class="col-sm-4 text-center">
+                            <div class="well text-success">
+                                <h1 class="huge">R$ <span data-th-text="${participante.totalCreditos()} == null ? 0.00 : ${participante.totalCreditos()}"></span></h1>
+                                <br>
+                                <h4>Saldo Disponível</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                                <form class="form-horizontal" data-th-action="@{/cpanel/credito/consulta/}" method="get">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">
+                                            * Pesquisar ID</label>
+                                        <div class="col-sm-8">
+                                            <div class="input-group">
+                                                <input type="number" required class="form-control" name="id" id="id" placeholder="Digite o ID do participante...">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"
+                                                            aria-hidden="true"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            <h1 class="text-center text-primary">#<span data-th-text="${participante.id}"></span> - <span data-th-text="${participante.nome}"></span></h1>
+                            <form class="form-horizontal" data-th-action="@{/cpanel/credito/}"  data-th-object="${credito}" method="post">
+                                <div class="form-group">
+                                        <hr>
+                                        <p class="text-center text-muted">
+                                            Adicionar Mais Créditos
+                                        </p>
+                                        <label for="valor" class="col-sm-2 control-label">* Valor</label>
+                                        <div class="col-sm-3">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">R$</span>
+                                                <input type="hidden" name="id" required data-th-value="${participante.id}">
+                                                <input type="number" class="form-control" step=".01" id="valor" required data-th-field="*{valor}" autocomplete="off" />
+                                            </div>
+                                        </div>
+                                        <label for="data" class="col-sm-2 control-label">Data / Hora</label>
+                                        <div class="col-sm-3">
+                                            <input type="text" class="form-control" readonly id="data" required data-th-field="*{data}" autocomplete="off" />
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <button class="btn btn-primary" type="submit" data-th-attrappend="disabled=${participante.id} == null ? disabled"> <i class="fa fa-plus" aria-hidden="true"></i>
+                                                Adicionar</button>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="table-scroll">
+                        <table class="table table-striped table-hover">
+                            <caption>
+                                Tabela de Recargas de Crédito
+                            </caption>
+                            <thead>
+                                <tr class="active">
+                                    <th class="col-sm-2"># ID Participante</th>
+                                    <th>Nome Completo</th>
+                                    <th>Horário</th>
+                                    <th class="col-sm-2">Valor de Recarga</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <data-th-block th:each="credito : ${participante.getCreditos()}">
+                                    <tr>
+                                        <td data-th-text="${participante.id}"></td>
+                                        <td class="upper" data-th-text="${participante.nome}"></td>
+                                        <td data-th-text="${credito.data}"></td>
+                                        <td><strong>R$ <span data-th-text="${credito.valor}"></span></strong></td>
+                                        <td class="text-center">
+                                            <a data-th-href="'/cpanel/credito/' + ${credito.id}" class="text-danger" data-toggle="tooltip" data-placement="top" title="Remover Crédito" style="font-size: 16px;"><i class="fa fa-times fa-fw"
+                                                    aria-hidden="true"></i></a>
+                                        </td>
+                                    </tr>
+                                </data-th-block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script data-th-src="@{/vendor/jquery/jquery.min.js}" src="../../../static/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script data-th-src="@{/vendor/bootstrap/js/bootstrap.min.js}" src="../../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <div data-layout-fragment="script">
+        <script>
+            $(function(){
+                $("#data").val(new Date().toLocaleString());
+            });    
+        </script>
+    </div>
+</body>
+
+</html>

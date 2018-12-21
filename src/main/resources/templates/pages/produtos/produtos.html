@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-layout-decorate="~{layouts/base}">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Produtos</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link data-th-href="@{/vendor/bootstrap/css/bootstrap.min.css}" href="../../../static/vendor/bootstrap/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link data-th-href="@{/vendor/font-awesome/css/font-awesome.min.css}" href="../../../static/vendor/font-awesome/css/font-awesome.min.css"
+        rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link data-th-href="@{/css/style.css}" href="../../../static/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="container" data-layout-fragment="content">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h5 class="text-primary"><i class="fa fa-shopping-basket fa-fw" aria-hidden="true"></i> Controle de Produtos</h5>
+                    <hr>
+                    <div class="alert alert-info alert-dismissible fade in " data-th-if="${msg != null}" role="alert"> <button type="button" class="close"
+                        data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
+                        <span data-th-text="${msg}"></span>
+                    </div>
+                    <form class="form-horizontal" data-th-action="@{/cpanel/produtos/}" data-th-object="${produto}" method="post">
+                        <p class="text-muted">
+                            <i class="fa fa-caret-right fa-fw" aria-hidden="true"></i>Dados do Produto</p>
+                        <div class="form-group">
+                            <input type="hidden" data-th-field="*{id}" id="idProduto">
+                            <label for="descricao" class="col-sm-2 control-label">* Descrição</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="descricao" data-th-field="*{descricao}" required
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="preco" class="col-sm-2 control-label">* Preço</label>
+                            <div class="col-sm-2">
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="sizing-addon1">R$</span>
+                                    <input type="text" class="form-control" id="preco" required autocomplete="off" data-th-field="*{preco}" />
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="text-left col-sm-12">
+                            <button type="submit" class="btn btn-primary" id="cadastrar">
+                                <i class="fa fa-check fa-fw" aria-hidden="true"></i> Cadastrar</button>
+                            <a class="btn btn-danger" href="#" base-view-url="/cpanel/produtos/" disabled id="delete" data-method="delete" role="button"><i class="fa fa-trash fa-fw" aria-hidden="true"></i> Excluir</a>
+                            <button type="reset" onClick="window.location.reload()" class="btn btn-outline btn-default"><i class="fa fa-undo fa-fw" aria-hidden="true"></i> Limpar</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+
+                    <hr>
+                    <form class="form-horizontal" data-th-action="@{/cpanel/produtos/consulta/}" method="get">
+                        <div class="form-group">
+                            <label for="q" class="col-sm-1 col-sm-offset-7 control-label">
+                                Pesquisar</label>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="q" id="q" placeholder="Digite o nome do produto...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"
+                                                aria-hidden="true"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="table-scroll">
+                        <table class="table table-bordered table-hover table-striped" >
+                            <caption>
+                                Tabela de Produtos
+                            </caption>
+                            <thead>
+                                <tr class="active">
+                                    <th class="col-sm-1"></th>
+                                    <th class="col-sm-1"># ID</th>
+                                    <th class="col-md-8">Produto</th>
+                                    <th class="col-md-2">Preço</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaProdutos">
+                                <data-th-block th:each="produto : ${produtos}">
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="produtos" class="radioProduto" data-th-value="${produto.id}">
+                                        </td>
+                                        <td data-th-text="${produto.id}"></td>
+                                        <td data-th-text="${produto.descricao}"></td>
+                                        <td data-th-value="${produto.preco}">R$ <span data-th-text="${produto.preco}"></span></td>
+                                    </tr>
+                                </data-th-block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script data-th-src="@{/vendor/jquery/jquery.min.js}" src="../../../static/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script data-th-src="@{/vendor/bootstrap/js/bootstrap.min.js}" src="../../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <div data-layout-fragment="script">
+        <script data-th-src="@{/js/produtos/produtos.js}" src="../../../static/js/produtos/produtos.js"></script>
+    </div>
+</body>
+
+</html>

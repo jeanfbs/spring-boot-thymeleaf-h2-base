@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Openight</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap Core CSS -->
+    <link data-th-href="@{/vendor/bootstrap/css/bootstrap.min.css}"
+          href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Custom Fonts -->
+    <link data-th-href="@{/vendor/font-awesome/css/font-awesome.min.css}"
+          href="../../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link data-th-href="@{/css/style.css}" href="../../static/css/style.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+<div data-th-replace="fragmentos/menu-navegacao :: navbar"/>
+<div class="container" data-layout-fragment="content"></div>
+
+<!-- jQuery -->
+<script data-th-src="@{/vendor/jquery/jquery.min.js}" src="../../static/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script data-th-src="@{/vendor/bootstrap/js/bootstrap.min.js}"
+        src="../../static/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script>
+      $(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+      });
+</script>
+<div data-layout-fragment="script"></div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+--create table if not exists tbl_produto (
+--  id serial primary key,
+--  nome varchar,
+--  valor decimal,
+--  DATA_CADASTRO date
+--  );
