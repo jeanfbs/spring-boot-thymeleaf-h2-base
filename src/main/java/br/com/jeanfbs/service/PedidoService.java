@@ -1,8 +1,8 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service;
+package br.com.jeanfbs.service;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Pedido;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Produto;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.repositories.PedidoRepository;
+import br.com.jeanfbs.entity.Pedido;
+import br.com.jeanfbs.entity.Produto;
+import br.com.jeanfbs.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

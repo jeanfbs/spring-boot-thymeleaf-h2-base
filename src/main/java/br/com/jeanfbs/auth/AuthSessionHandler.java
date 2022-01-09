@@ -1,4 +1,4 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.auth;
+package br.com.jeanfbs.auth;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

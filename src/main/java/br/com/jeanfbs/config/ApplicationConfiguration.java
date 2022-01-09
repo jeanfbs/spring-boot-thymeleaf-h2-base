@@ -1,4 +1,4 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.config;
+package br.com.jeanfbs.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

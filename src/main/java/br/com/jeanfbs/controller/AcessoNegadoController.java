@@ -1,4 +1,4 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.controller;
+package br.com.jeanfbs.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

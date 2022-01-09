@@ -1,10 +1,10 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service;
+package br.com.jeanfbs.service;
 
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Credito;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Participante;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.repositories.CreditoRepository;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.repositories.ParticipanteRepository;
+import br.com.jeanfbs.entity.Credito;
+import br.com.jeanfbs.entity.Participante;
+import br.com.jeanfbs.repositories.CreditoRepository;
+import br.com.jeanfbs.repositories.ParticipanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

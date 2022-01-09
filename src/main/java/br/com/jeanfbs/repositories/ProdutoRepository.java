@@ -1,6 +1,6 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.repositories;
+package br.com.jeanfbs.repositories;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Produto;
+import br.com.jeanfbs.entity.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

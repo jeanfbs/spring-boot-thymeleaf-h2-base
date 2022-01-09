@@ -1,8 +1,8 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.controller;
+package br.com.jeanfbs.controller;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Credito;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Participante;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.ParticipanteService;
+import br.com.jeanfbs.entity.Credito;
+import br.com.jeanfbs.entity.Participante;
+import br.com.jeanfbs.service.ParticipanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

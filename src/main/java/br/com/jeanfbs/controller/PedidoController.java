@@ -1,11 +1,11 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.controller;
+package br.com.jeanfbs.controller;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Participante;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Pedido;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Produto;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.ParticipanteService;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.PedidoService;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.ProdutoService;
+import br.com.jeanfbs.entity.Participante;
+import br.com.jeanfbs.entity.Pedido;
+import br.com.jeanfbs.entity.Produto;
+import br.com.jeanfbs.service.ParticipanteService;
+import br.com.jeanfbs.service.PedidoService;
+import br.com.jeanfbs.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity;
+package br.com.jeanfbs.entity;
 
 
 import javax.persistence.*;

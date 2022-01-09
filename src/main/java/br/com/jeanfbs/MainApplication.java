@@ -1,4 +1,4 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base;
+package br.com.jeanfbs;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

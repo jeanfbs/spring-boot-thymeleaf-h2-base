@@ -1,6 +1,6 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.config;
+package br.com.jeanfbs.config;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.auth.AuthSessionHandler;
+import br.com.jeanfbs.auth.AuthSessionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

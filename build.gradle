@@ -16,7 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-mainClassName = 'br.com.jeanfbs.spring_boot_thymeleaf_h2_base.MainApplication'
+mainClassName = 'br.com.jeanfbs.MainApplication'
 
 repositories {
     mavenCentral()

@@ -1,6 +1,6 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.repositories;
+package br.com.jeanfbs.repositories;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.entity.Pedido;
+import br.com.jeanfbs.entity.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package br.com.jeanfbs.spring_boot_thymeleaf_h2_base.controller;
+package br.com.jeanfbs.controller;
 
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.auth.AuthenticationSession;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.ParticipanteService;
-import br.com.jeanfbs.spring_boot_thymeleaf_h2_base.service.PedidoService;
+import br.com.jeanfbs.auth.AuthenticationSession;
+import br.com.jeanfbs.service.ParticipanteService;
+import br.com.jeanfbs.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.ModelAndView;
