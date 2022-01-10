@@ -62,7 +62,7 @@ public class PedidoController extends BaseController {
     }
 
 
-    @PostMapping(value = { "/pedido" })
+    @PostMapping(value = { "/bar/pedido" })
     public String saveCredito(
             @RequestParam("idParticipante") Long idParticipante,
             @RequestParam("idProduto") Long idProduto,

@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.Principal;
 
 @Configuration
 @EnableWebSecurity
@@ -34,10 +35,10 @@ public class Security extends WebSecurityConfigurerAdapter {
             http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/cpanel/produtos/").hasAnyRole("ADMIN")
-                    .antMatchers("/cpanel/participante/").hasAnyRole("ADMIN", "CAIXA")
-                    .antMatchers("/cpanel/credito/").hasAnyRole("ADMIN", "CAIXA")
-                    .antMatchers("/cpanel/bar/").hasAnyRole("ADMIN", "APOIO")
+                    .antMatchers("/cpanel/produtos/*").hasAnyRole("ADMIN")
+                    .antMatchers("/cpanel/participante/*").hasAnyRole("ADMIN", "CAIXA")
+                    .antMatchers("/cpanel/credito/*").hasAnyRole("ADMIN", "CAIXA")
+                    .antMatchers("/cpanel/bar/*").hasAnyRole("ADMIN", "APOIO")
                 .anyRequest()
                     .denyAll().and()
                 .formLogin()
